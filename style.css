@@ -1,0 +1,114 @@
+:root {
+    /* Candy Pop Renk Paleti */
+    --bg-color: #e6bed8; /* Ana Arka Plan */
+    --number-btn-color: #c15ba7; /* Sayı Butonları (Şeftali Pembe) */
+    --operator-btn-color: #dda7cc; /* İşlem Butonları (Lavanta Moru) */
+    --equals-btn-color: #7c203e; /* Eşittir Butonu (Canlı Turuncu) */
+    --text-color: #580029;
+    --shadow-light: rgba(255, 255, 255, 0.8);
+    --shadow-dark: rgba(239, 234, 238, 0.4);
+}
+
+* {
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Hesap Makinesi Çerçevesi */
+.calculator-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 70px);
+    grid-template-rows: minmax(120px, auto) repeat(5, 70px);
+    gap: 15px;
+    padding: 20px;
+    background-color: #F0D0E8;
+    border-radius: 30px;
+    /* Çerçeveye de hafif bir gölge */
+    box-shadow: 10px 10px 20px rgba(0,0,0,0.1), -10px -10px 20px var(--shadow-light);
+}
+
+/* Ekran Alanı */
+.output {
+    grid-column: 1 / -1;
+    background-color: #EFEFEF;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-around;
+    padding: 10px;
+    word-wrap: break-word;
+    word-break: break-all;
+    margin-bottom: 5px;
+}
+
+.output .previous-operand {
+    color: rgba(51, 51, 51, .75);
+    font-size: 1.2rem;
+}
+
+.output .current-operand {
+    color: var(--text-color);
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+/* Butonlar için Genel Stil */
+.calculator-grid > button {
+    cursor: pointer;
+    font-size: 1.5rem;
+    outline: none;
+    border: none;
+    border-radius: 50%; /* Tam Yuvarlak Buton */
+    color: var(--text-color);
+    transition: all 0.1s ease;
+    
+    /* Neumorphism Varsayılan Gölge (3D) */
+    background-color: var(--number-btn-color); /* Varsayılan renk sayı butonu rengi */
+    box-shadow: 
+        5px 5px 10px var(--shadow-dark), 
+        -5px -5px 10px var(--shadow-light); 
+}
+
+/* Basma Efekti (3D İçeri İtme) */
+.calculator-grid > button:active {
+    box-shadow: 
+        inset 3px 3px 5px var(--shadow-dark), 
+        inset -3px -3px 5px var(--shadow-light);
+    transform: translateY(1px); /* Hafif aşağı kaydırma */
+}
+
+/* Farklı Buton Renkleri ve Şekilleri */
+.span-two {
+    grid-column: span 2;
+    border-radius: 35px; /* 0 butonu için yatay uzunluk */
+}
+
+.operator {
+    background-color: var(--operator-btn-color);
+}
+
+.equals {
+    background-color: var(--equals-btn-color);
+    grid-row: span 2; /* Eşittir butonunu daha uzun yapmak için */
+    height: 155px; /* Uzun butona uygun yükseklik */
+    border-radius: 35px;
+}
+
+/* Eşittir butonunun üzerindeki operatör stilini geçersiz kılın */
+.equals:active {
+    box-shadow: 
+        inset 3px 3px 5px var(--shadow-dark), 
+        inset -3px -3px 5px var(--shadow-light);
+    transform: translateY(1px); 
+}
